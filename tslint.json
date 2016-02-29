@@ -32,11 +32,10 @@
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
-    "no-string-literal": true,
+    "no-string-literal": false,
     "no-switch-case-fall-through": true,
-    "no-trailing-comma": false,
     "no-trailing-whitespace": true,
-    "no-unused-variable": true,
+    "no-unused-variable": [true, "react", {"ignore-pattern": "^_$"}],
     "no-unreachable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
@@ -48,7 +47,7 @@
     ],
     "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
-    "semicolon": true,
+    "semicolon": [true, "never"],
     "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [true, {
       "call-signature": "nospace",
@@ -66,8 +65,6 @@
       "check-separator",
       "check-type"
     ],
-    "blank-lines": true,
-    "selfclosing-tsx": true,
     "trailing-comma": [true, {
       "multiline": "always",
       "singleline": "never"

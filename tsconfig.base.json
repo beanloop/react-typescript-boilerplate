@@ -7,7 +7,7 @@
     "inlineSources": false,
     "target": "es6",
     "module": "es6",
-    "outDir": ".tmp/ts"
+    "outDir": ".ts"
   },
   "filesGlob": [
     "*.ts",

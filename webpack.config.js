@@ -1,6 +1,13 @@
-var config = {
+'use strict'
+const path = require('path')
+
+const production = process.env.NODE_ENV === 'production'
+
+const config = {
+  debug: !production,
+  devtool: production ? '' : 'source-map',
   entry: {
-    js: './app/index',
+    js: ['babel-polyfill', './app/index'],
     html: './app/index.html',
   },
   output: {
@@ -13,9 +20,15 @@ var config = {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         loaders: [
-          'react-hot',
           'babel?' + JSON.stringify({
-            presets: ["react", "es2015", "stage-1"],
+            presets: [
+              require.resolve('babel-preset-react'),
+              require.resolve('babel-preset-es2015'),
+              require.resolve('babel-preset-stage-2'),
+            ],
+            plugins: production
+             ? ['transform-react-constant-elements', 'transform-react-inline-elements']
+             : [],
           }),
          'ts',
        ],
@@ -28,19 +41,20 @@ var config = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
-    root: __dirname,
+    modulesDirectories: ['node_modules', path.resolve('./node_modules')],
   },
-};
+}
 
-if (process.env.NODE_ENV === 'production') {
-  var webpack = require('webpack');
+if (production) {
+  const webpack = require('webpack')
 
   config.plugins = [
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       test: /\.js$/,
     }),
-  ];
+  ]
 }
 
-module.exports = config;
+module.exports = config

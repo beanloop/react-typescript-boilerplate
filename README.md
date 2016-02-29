@@ -13,16 +13,16 @@
 - React Router 2.0
 - Redux 3.3
 
-## Build steps
+## Build tools
+- Typescript
+- Babel
+- Webpack
+
 ### Development
-1. Compiles with Typescript to ES6
-1. Compiles with Babel to ES5
-1. Adds react-hot for hot loading of components
+- Hot loading
 
 ### Production
-1. Compiles with Typescript to ES6
-1. Compiles with Babel to ES5
-1. Minifies with UglifyJS
+- Minifies with UglifyJS
 
 ## Branding
 Names should be set in:

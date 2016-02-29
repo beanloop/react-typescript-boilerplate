@@ -26,6 +26,7 @@
 
 ## Branding
 Names should be set in:
+
 1. title in index.html
 1. name, description, urls in package.json
 1. names, urls in deploy.sh

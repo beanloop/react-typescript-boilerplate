@@ -1,4 +1,4 @@
-import {expect} from 'code'
+import {render} from 'enzyme'
 
 describe('test', () => {
   it('should run', () => {

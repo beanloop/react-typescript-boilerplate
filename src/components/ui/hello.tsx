@@ -1,4 +1,5 @@
 import {FormattedMessage, defineMessages} from 'react-intl'
+import {RedTitle} from '../style/headings'
 
 const messages = defineMessages({
   helloWorld: {
@@ -7,4 +8,7 @@ const messages = defineMessages({
   }
 })
 
-export const Hello = () => <FormattedMessage {...messages.helloWorld} />
+export const Hello = () =>
+  <RedTitle>
+    <FormattedMessage {...messages.helloWorld} />
+  </RedTitle>

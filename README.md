@@ -12,6 +12,7 @@
 - [Redux 3.6](https://github.com/reactjs/redux)
 - [React Intl 2.2](https://github.com/yahoo/react-intl)
 - [Recompose 0.23](https://github.com/acdlite/recompose)
+- [Styled Components 1.4](https://github.com/styled-components/styled-components)
 
 ## Build tools
 - Typescript

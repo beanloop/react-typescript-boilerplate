@@ -5,8 +5,8 @@
       "check-whitespace",
       "check-uppercase"
     ],
-    "curly": true,
-    "eofline": false,
+    "curly": false,
+    "eofline": true,
     "forin": true,
     "indent": [true, "spaces", 2],
     "label-position": true,
@@ -21,8 +21,6 @@
     "no-console": [true,
       "debug",
       "info",
-      "time",
-      "timeEnd",
       "trace"
     ],
     "no-consecutive-blank-lines": true,

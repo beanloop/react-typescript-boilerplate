@@ -1,11 +1,13 @@
-import * as React from 'react'
-import {Router, Route} from 'react-router'
+import {IndexRedirect, Router, Route} from 'react-router'
 
 const Container = ({children}) => <main>{children}</main>
+export const Hello = () => <span>Hello, world!</span>
 
 export function routes() {
   return (
     <Route path='/' component={Container}>
+      <IndexRedirect to='/hello' />
+      <Route path='/hello' component={Hello} />
     </Route>
   )
 }

@@ -1,19 +1,37 @@
 'use strict'
+
 const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const production = process.env.NODE_ENV === 'production'
 
-const config = {
-  debug: !production,
-  devtool: production ? '' : 'source-map',
+const babelPlugins = ['jsx-tagclass']
+const babelDevPlugins = babelPlugins
+  .map(plugin => require.resolve(`babel-plugin-${plugin}`))
+const babelProdPlugins = babelPlugins
+  .concat([
+    'transform-react-constant-elements',
+    'transform-react-inline-elements',
+  ])
+  .map(plugin => require.resolve(`babel-plugin-${plugin}`))
+
+const browserConfig = {
+  name: 'browser',
   entry: {
-    js: ['babel-polyfill', './app/index'],
-    html: './app/index.html',
+    javascript: [
+      'babel-polyfill',
+      './app/index',
+    ],
   },
   output: {
-    path: __dirname + '/dist',
-    filename: '[name].js',
+    publicPath: '/',
+    path: './dist',
+    filename: production ? 'app.[hash].js' : 'app.js',
+    devtoolModuleFilenameTemplate: '/[absolute-resource-path]',
   },
+  debug: !production,
+  devtool: production ? 'none' : 'source-map',
   module: {
     loaders: [
       {
@@ -27,28 +45,63 @@ const config = {
               require.resolve('babel-preset-stage-2'),
             ],
             plugins: production
-             ? ['transform-react-constant-elements', 'transform-react-inline-elements']
-             : [],
+              ? babelProdPlugins
+              : babelDevPlugins,
           }),
          'ts',
        ],
       },
       {
+        test: /\.css$/,
+        loader: 'style!css',
+      },
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[path][name]---[local]---[hash:base64:5]',
+          'postcss',
+        ],
+      },
+      {
         test: /\.html$/,
-        loader: "file?name=[name].[ext]",
+        loader: 'raw',
       },
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx', '.scss'],
     modulesDirectories: ['node_modules', path.resolve('./node_modules')],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
+      __ROOT_PATH__: `"${__dirname}"`,
+    }),
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/app/index.html`,
+    }),
+  ],
+  postcss: webpack => ({
+    plugins: [
+      require('postcss-easy-import')({
+        addDependencyTo: webpack,
+        path: ['node_modules/*.scss', path.resolve('./node_modules'), ''],
+        extensions: ['.scss', '.css'],
+      }),
+      require('postcss-strip-inline-comments'),
+      require('precss')({import: {disable: true}}),
+      require('postcss-calc'),
+      require('autoprefixer'),
+    ],
+    syntax: require('postcss-scss'),
+  }),
 }
 
 if (production) {
   const webpack = require('webpack')
 
-  config.plugins = [
+  browserConfig.plugins = [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -57,4 +110,4 @@ if (production) {
   ]
 }
 
-module.exports = config
+module.exports = browserConfig

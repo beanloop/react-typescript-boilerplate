@@ -2,6 +2,9 @@ import * as React from 'react'
 import {render} from 'react-dom'
 import {App} from './app'
 
+// Make React global so that components can use JSX without importing React
+window['React'] = React
+
 function renderApp(App) {
   const app = document.getElementById('app')
   if (module.hot) {

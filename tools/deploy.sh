@@ -21,9 +21,9 @@ cd dist
 
 git init
 git checkout -b gh-pages
-git config --global user.email "pie.or.paj@gmail.com"
+git config --global user.email "git@beanloop.se"
 git config --global user.name "Travis"
-git remote add deploy "https://$GITHUB_AUTH@github.com/Pajn/Culinam.git"
+git remote add deploy "https://$GITHUB_AUTH@github.com/beanloop/react-typescript-boilerplate.git"
 
 git add -A
 

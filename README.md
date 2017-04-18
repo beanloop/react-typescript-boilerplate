@@ -7,11 +7,11 @@
 - `yarn test` - Runs the tests.
 
 ## Included packages
-- React 15.5
-- React Router 4.1
-- Redux 3.6
-- React Intl 2.2
-- Recompose 0.23
+- [React 15.5](https://github.com/facebook/react)
+- [React Router 4.1](https://github.com/ReactTraining/react-router)
+- [Redux 3.6](https://github.com/reactjs/redux)
+- [React Intl 2.2](https://github.com/yahoo/react-intl)
+- [Recompose 0.23](https://github.com/acdlite/recompose)
 
 ## Build tools
 - Typescript

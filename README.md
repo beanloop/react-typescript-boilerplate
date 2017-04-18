@@ -1,17 +1,17 @@
 # React Typescript boilerplate
 
 ## Commands
-- `npm start` - Starts a dev server on <http://localhost:8080> with hot loading
-- `npm run build` - Does a production build in dist
-- `npm run lint` - Runs the linter to check for style issues
-- `npm run typescript` - Runs typescript to check for typing issues
-- `npm run test` - Runs tests
-- `npm run build_dev` - Does a development build but outputs to dist
+- `yarn start` - Starts a dev server on <http://localhost:3000> with hot loading.
+- `yarn build` - Does a production build in dist.
+- `yarn lint` - Runs the linter to check for style issues.
+- `yarn test` - Runs the tests.
 
 ## Included packages
-- React 0.14
-- React Router 2.0
-- Redux 3.3
+- React 15.5
+- React Router 4.1
+- Redux 3.6
+- React Intl 2.2
+- Recompose 0.23
 
 ## Build tools
 - Typescript

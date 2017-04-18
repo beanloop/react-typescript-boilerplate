@@ -16,7 +16,6 @@ export const App = () =>
     <Main></Main>
   </BrowserRouter>
 
-
 export const Main = () =>
   <main>
     <Routes />

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render Main 1`] = `
+<main>
+  <div>
+    Home 
+    <a
+      href="/hello"
+    >
+      Go to hello
+    </a>
+  </div>
+</main>
+`;

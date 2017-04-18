@@ -1,15 +1,23 @@
-import {IndexRedirect, Router, Route} from 'react-router'
+import {BrowserRouter, Link} from 'react-router-dom'
+import Route from 'react-router/Route'
+import Switch from 'react-router/Switch'
 
-const Container = ({children}) => <main>{children}</main>
+export const Home = () => <div>Home <Link to="/hello">Go to hello</Link></div>
 export const Hello = () => <span>Hello, world!</span>
 
-export function routes() {
-  return (
-    <Route path='/' component={Container}>
-      <IndexRedirect to='/hello' />
-      <Route path='/hello' component={Hello} />
-    </Route>
-  )
-}
+export const Routes = () =>
+  <Switch>
+    <Route path="/hello" component={Hello} />
+    <Route path="/" render={Home} />
+  </Switch>
 
-export const App = () => <Router>{routes()}</Router>
+export const App = () =>
+  <BrowserRouter>
+    <Main></Main>
+  </BrowserRouter>
+
+
+export const Main = () =>
+  <main>
+    <Routes />
+  </main>
